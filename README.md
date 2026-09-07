@@ -1,4 +1,4 @@
-# PLHIV exposure to extreme weather events in sub-Saharan Africa
+# People living with HIV exposure to extreme weather events in sub-Saharan Africa
 
 Analysis code for estimating the number of people living with HIV (PLHIV) in
 sub-Saharan Africa (SSA) exposed to heatwaves, extreme rainfall and drought in 2018,
