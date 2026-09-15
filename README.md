@@ -21,17 +21,17 @@ The pipeline produces:
 ## Repository layout
 
 ```
-R/00_inputs/        what the ERA5 input must be, and a check that it is
-R/01_setup/         paths, configuration and the two shared libraries
-R/02_indicators/    the extreme weather indicators
-R/03_population/    Monte Carlo simulation of gridded PLHIV
-R/04_exposure/      indicator screening, severity classification, threshold exposure
-R/05_hotspots/      Gi* inputs, transformation choice, Gi*, overlap analysis
-R/06_supplementary/ optional analyses that feed the supplements only
+00_inputs/        what the ERA5 input must be, and a check that it is
+01_setup/         paths, configuration and the two shared libraries
+02_indicators/    the extreme weather indicators
+03_population/    Monte Carlo simulation of gridded PLHIV
+04_exposure/      indicator screening, severity classification, threshold exposure
+05_hotspots/      Gi* inputs, transformation choice, Gi*, overlap analysis
+06_supplementary/ optional analyses that feed the supplements only
 ```
 
-Every script under `R/` is run directly, in the order given below, except the
-four in `R/01_setup/`, which are sourced by the others rather than run.
+Every script is run directly, in the order given below, except the four in
+`01_setup/`, which are sourced by the others rather than run.
 
 ---
 
@@ -70,6 +70,15 @@ Obtaining the ERA5 input additionally needs a Copernicus Climate Data Store
 account. The download and the reduction from hourly to daily fields are done
 once, outside this repository.
 
+### Project root
+
+All paths resolve from a single root directory, `EWE_ROOT`, so that no script
+contains an absolute path. Set it before running anything, either with
+`Sys.setenv(EWE_ROOT = "/path/to/project")` or by creating an untracked file
+`01_setup/00_paths_local.R` that contains `EWE_ROOT <- "/path/to/project"`. Every
+script is run from the repository root, for example
+`Rscript 02_indicators/07_index_spi.R`.
+
 ### Expected layout under `EWE_ROOT`
 
 ```
@@ -100,36 +109,34 @@ in parallel. Steps 13 onward require both.
 
 | # | Script | Requires | Produces |
 | --- | --- | --- | --- |
-| 01 | `R/00_inputs/01_era5_inputs.R` | daily ERA5 NetCDF under `data/era5/` | verification that the ERA5 input is complete and in raw units |
-| -- | `R/01_setup/00_paths.R` | -- | path constants (sourced, not run) |
-| -- | `R/01_setup/01_config.R` | 00 | variable table, `load_year()` (sourced) |
-| -- | `R/01_setup/02_lib_indices.R` | 01 | drought index engine (sourced) |
-| -- | `R/01_setup/03_lib_shared.R` | 01 | helpers shared by steps 12 to 19 (sourced) |
-| 02 | `R/02_indicators/02_build_soil_moisture.R` | swvl1–3 | depth-weighted soil moisture |
-| 03 | `R/02_indicators/03_temperature_thresholds.R` | tmax | TX90p and TX95p day-of-year thresholds |
-| 04 | `R/02_indicators/04_heatwaves.R` | 03 | HWN, HWF, HWM, HWMF, HWNM |
-| 05 | `R/02_indicators/05_extreme_rainfall.R` | pr | R95p and R99p thresholds, day counts and totals |
-| 06 | `R/02_indicators/06_severity_excess_percentile.R` | 03, 05 | HWES, HWPD, rainfall excess and percentile deviation |
-| 07 | `R/02_indicators/07_index_spi.R` | pr | SPI at 1 and 3 month accumulation; unfittable cell-months set to zero |
-| 08 | `R/02_indicators/08_index_spei.R` | pr, pet | SPEI at the same scales |
-| 09 | `R/02_indicators/09_index_sri.R` | ro | SRI at the same scales; unfittable cells set to zero |
-| 10 | `R/02_indicators/10_index_sma.R` | 02 | SMA at the same scales |
-| 11 | `R/02_indicators/11_drought_month_count.R` | 07–10 | annual drought-month counts per index and threshold |
-| 12 | `R/03_population/12_monte_carlo_plhiv.R` | IHME, GADM | 1000 PLHIV draws, uncertainty intervals, country layer; written for females, males and the two combined |
-| 13 | `R/04_exposure/13_indicator_screening.R` | 02–12 | one page set per candidate indicator, with distribution summaries |
-| 14 | `R/04_exposure/14_exposure_classification.R` | 02–12 | PLHIV by severity category, per indicator |
-| 15 | `R/04_exposure/15_sevenday_exposure.R` | 02–12 | PLHIV exposed to ≥7 days or ≥1 month per hazard |
-| 16 | `R/05_hotspots/16_gistar_inputs.R` | 02–12 | transformed Gi\* input stack |
-| 17 | `R/05_hotspots/17_transformation_selection.R` | 16, stage 1 | transformation selection grid |
-| 18 | `R/05_hotspots/18_gistar.R` | 16 | Gi\* z-scores, BH-adjusted p-values, categories |
-| 19 | `R/05_hotspots/19_gistar_postprocessing.R` | 18, 12 | hotspot overlap maps, PLHIV in overlaps |
-| 20 | `R/06_supplementary/20_day_threshold_sweep.R` | 04, 05, 12 | supplementary: exposure at every day threshold from 1 to 14 |
-
+| 01 | `00_inputs/01_era5_inputs.R` | daily ERA5 NetCDF under `data/era5/` | verification that the ERA5 input is complete and in raw units |
+| -- | `01_setup/00_paths.R` | -- | path constants (sourced, not run) |
+| -- | `01_setup/01_config.R` | 00 | variable table, `load_year()` (sourced) |
+| -- | `01_setup/02_lib_indices.R` | 01 | drought index engine (sourced) |
+| -- | `01_setup/03_lib_shared.R` | 01 | helpers shared by steps 12 to 19 (sourced) |
+| 02 | `02_indicators/02_build_soil_moisture.R` | swvl1–3 | depth-weighted soil moisture |
+| 03 | `02_indicators/03_temperature_thresholds.R` | tmax | TX90p and TX95p day-of-year thresholds |
+| 04 | `02_indicators/04_heatwaves.R` | 03 | HWN, HWF, HWM, HWMF, HWNM |
+| 05 | `02_indicators/05_extreme_rainfall.R` | pr | R95p and R99p thresholds, day counts and totals |
+| 06 | `02_indicators/06_severity_excess_percentile.R` | 03, 05 | HWES, HWPD, rainfall excess and percentile deviation |
+| 07 | `02_indicators/07_index_spi.R` | pr | SPI at 1 and 3 month accumulation; unfittable cell-months set to zero |
+| 08 | `02_indicators/08_index_spei.R` | pr, pet | SPEI at the same scales |
+| 09 | `02_indicators/09_index_sri.R` | ro | SRI at the same scales; unfittable cells set to zero |
+| 10 | `02_indicators/10_index_sma.R` | 02 | SMA at the same scales |
+| 11 | `02_indicators/11_drought_month_count.R` | 07–10 | annual drought-month counts per index and threshold |
+| 12 | `03_population/12_monte_carlo_plhiv.R` | IHME, GADM | 1000 PLHIV draws, uncertainty intervals, country layer; written for females, males and the two combined |
+| 13 | `04_exposure/13_indicator_screening.R` | 02–12 | one page set per candidate indicator, with distribution summaries |
+| 14 | `04_exposure/14_exposure_classification.R` | 02–12 | PLHIV by severity category, per indicator |
+| 15 | `04_exposure/15_sevenday_exposure.R` | 02–12 | PLHIV exposed to ≥7 days or ≥1 month per hazard |
+| 16 | `05_hotspots/16_gistar_inputs.R` | 02–12 | transformed Gi\* input stack |
+| 17 | `05_hotspots/17_transformation_selection.R` | 16, stage 1 | transformation selection grid |
+| 18 | `05_hotspots/18_gistar.R` | 16 | Gi\* z-scores, BH-adjusted p-values, categories |
+| 19 | `05_hotspots/19_gistar_postprocessing.R` | 18, 12 | hotspot overlap maps, PLHIV in overlaps |
+| 20 | `06_supplementary/20_day_threshold_sweep.R` | 04, 05, 12 | supplementary: exposure at every day threshold from 1 to 14 |
 
 The analysis covers the combined population aged 15 to 59. Step 12 models the
 eighteen age and sex groups internally and aggregates them before writing, so a
 sex-stratified analysis would need step 12 to write the groups separately.
-
 
 ### Figures
 
@@ -148,7 +155,6 @@ supplements. Steps 14 and 15 write six between them:
 The first four come from step 14 and the last two from step 15, which writes
 each map as JPEG and as PDF. Step 19 additionally writes the hotspot overlap
 panels described under Gi* plot folders below.
-
 
 ### Gi* plot folders
 
