@@ -12,8 +12,8 @@
 # Requires: step 16
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 # Twelve input surfaces are analysed: the nine indicators and three summaries
 # of the prevalence draws. Each is analysed continent-wide and separately

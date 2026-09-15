@@ -8,7 +8,7 @@
 # Sourced by steps 07 to 10. Not run directly.
 # ============================================================
 
-source(file.path("R", "01_setup", "00_paths.R"))
+source(file.path("01_setup", "00_paths.R"))
 
 suppressPackageStartupMessages({ library(SPEI); library(zoo) })
 
@@ -16,8 +16,8 @@ dpm_of <- function(year) if (is_leap_year(year))
   c(31,29,31,30,31,30,31,31,30,31,30,31) else c(31,28,31,30,31,30,31,31,30,31,30,31)
 
 # ---- daily -> 12 monthly layers, fun = "sum" or "mean" ------------------
-# A complete year is assumed, which tests/00_preflight.R verifies by counting
-# the daily layers of every input file.
+# A complete year is assumed, which 00_inputs/01_era5_inputs.R verifies by
+# counting the daily layers of every input file.
 monthly_from_daily <- function(daily_r, year, fun = c("sum","mean")) {
   fun <- match.arg(fun)
   idx <- rep(1:12, dpm_of(year))

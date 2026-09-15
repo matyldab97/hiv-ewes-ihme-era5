@@ -10,7 +10,7 @@
 # Output: results/indices/SPEI
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R")); source(file.path("R", "01_setup", "02_lib_indices.R"))
+source(file.path("01_setup", "01_config.R")); source(file.path("01_setup", "02_lib_indices.R"))
 
 out_dir <- file.path(DIR_INDICES, "SPEI"); dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 SCALES <- c(1, 3); THRS <- c(-1.0, -1.5)

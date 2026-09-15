@@ -8,7 +8,7 @@
 # Output: results/soil
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 out_dir <- ERA5_VARS$Soil$dir
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)

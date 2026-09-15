@@ -1,5 +1,5 @@
 ## =============================================================================
-## R/00_inputs/01_era5_inputs.R
+## 00_inputs/01_era5_inputs.R
 ##
 ## Specifies the ERA5 input for the pipeline.The data are obtained from the
 ## Copernicus Climate Data Store and prepared once, outside this repository.
@@ -21,7 +21,7 @@
 ##             The CDS applies this subset server-side.
 ## Period      every year from 1991 to 2020 inclusive, all months, all days,
 ##             all 24 hours. The reference period and the target year are set in
-##             R/01_setup/01_config.R; if either is changed, the years needed
+##             01_setup/01_config.R; if either is changed, the years needed
 ##             here change with it, and load_year() names the first file it
 ##             cannot find.
 ##
@@ -68,7 +68,7 @@
 ##
 ## =============================================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 suppressPackageStartupMessages(library(terra))
 terraOptions(progress = 0)
@@ -152,4 +152,4 @@ if (length(problems)) {
 message("\n  Grid: ", paste(dim(ref_geom)[1:2], collapse = " x "), " cells at ",
         paste(round(res(ref_geom), 4), collapse = " by "), " degrees")
 message("  ERA5 input complete and consistent.")
-message("\nNext: R/02_indicators/02_build_soil_moisture.R")
+message("\nNext: 02_indicators/02_build_soil_moisture.R")

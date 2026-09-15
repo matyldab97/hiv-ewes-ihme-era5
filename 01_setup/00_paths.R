@@ -4,7 +4,7 @@
 # Every path in this repository resolves from a single root. Set it once,
 # either as an environment variable
 #     Sys.setenv(EWE_ROOT = "/path/to/project")
-# or in a local, untracked file R/01_setup/00_paths_local.R that assigns
+# or in a local, untracked file 01_setup/00_paths_local.R that assigns
 # EWE_ROOT. Nothing else in the repository contains an absolute path.
 #
 # Expected layout under EWE_ROOT:
@@ -27,8 +27,8 @@
 # Sourced by 01_config.R. Not run directly.
 # ============================================================
 
-if (file.exists(file.path("R", "01_setup", "00_paths_local.R"))) {
-  source(file.path("R", "01_setup", "00_paths_local.R"))
+if (file.exists(file.path("01_setup", "00_paths_local.R"))) {
+  source(file.path("01_setup", "00_paths_local.R"))
 }
 
 if (!exists("EWE_ROOT")) {
@@ -36,7 +36,7 @@ if (!exists("EWE_ROOT")) {
 }
 if (is.na(EWE_ROOT) || !nzchar(EWE_ROOT)) {
   stop("EWE_ROOT is not set. Either Sys.setenv(EWE_ROOT = \"/path/to/project\") ",
-       "or create R/01_setup/00_paths_local.R containing ",
+       "or create 01_setup/00_paths_local.R containing ",
        "EWE_ROOT <- \"/path/to/project\".")
 }
 EWE_ROOT <- normalizePath(EWE_ROOT, mustWork = FALSE)

@@ -9,7 +9,7 @@
 # Output:   results/indices/SMA
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R")); source(file.path("R", "01_setup", "02_lib_indices.R"))
+source(file.path("01_setup", "01_config.R")); source(file.path("01_setup", "02_lib_indices.R"))
 
 # ---- SMA: empirical standardisation per calendar month ------------------
 # Returns the 12 target-year monthly SMA layers for a given scale.

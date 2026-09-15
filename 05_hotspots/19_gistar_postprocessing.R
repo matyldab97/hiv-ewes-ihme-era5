@@ -7,8 +7,8 @@
 # Requires: steps 12 and 18
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 
 # Reads the categorical and z-score rasters from step 18 and reports, both

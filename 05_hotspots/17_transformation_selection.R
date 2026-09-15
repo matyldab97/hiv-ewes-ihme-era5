@@ -5,7 +5,7 @@
 # input surface, and how the one actually applied compares.
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 
 # Seven candidate transformations are applied to each input surface and the

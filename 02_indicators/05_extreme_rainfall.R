@@ -10,7 +10,7 @@
 # Output: results/indices/R95p, results/indices/R99p
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 PCTS <- c("95" = 0.95, "99" = 0.99)
 

@@ -8,7 +8,7 @@
 # Requires: steps 02 to 12
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 
 # Stage 1 writes an augmented stack: the prevalence draws, the country layer

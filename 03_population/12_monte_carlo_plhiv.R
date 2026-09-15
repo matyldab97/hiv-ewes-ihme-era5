@@ -35,8 +35,8 @@
 # Output: results/montecarlo
 # ======================================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 
 library(terra)
@@ -418,7 +418,7 @@ message("")
 message("Step 1: template and overlap weights")
 
 hiv_ref_path <- find_plhiv("FEMALES", "LOWER", ages[1])
-if (is.na(hiv_ref_path)) stop("No PLHIV raster for the target year under DIR_PLHIV_FINE; run tests/00_preflight.R")
+if (is.na(hiv_ref_path)) stop("No PLHIV raster for the target year under DIR_PLHIV_FINE")
 hiv_ref <- rast(hiv_ref_path)
 
 tpl <- make_aligned_template(clim_ref_path, hiv_ref)

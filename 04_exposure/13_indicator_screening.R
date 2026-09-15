@@ -7,8 +7,8 @@
 # Requires: steps 02 to 12
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 # One page per indicator, held in EWE_verification_figures as a PDF and a JPEG:
 # map, histogram, interquartile classification for the whole of SSA, and the

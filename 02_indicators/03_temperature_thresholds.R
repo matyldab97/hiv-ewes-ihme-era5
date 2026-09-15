@@ -10,7 +10,7 @@
 # Used by: steps 04 and 06
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 suppressPackageStartupMessages(library(zoo))
 

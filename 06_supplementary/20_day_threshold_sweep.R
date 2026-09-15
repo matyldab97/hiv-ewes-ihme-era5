@@ -15,8 +15,8 @@
 # Output: results/supplementary/day_threshold_sweep
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 suppressPackageStartupMessages({
   library(terra); library(dplyr); library(openxlsx); library(ggplot2)

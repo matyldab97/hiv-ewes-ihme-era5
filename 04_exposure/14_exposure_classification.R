@@ -7,8 +7,8 @@
 # Requires: steps 02 to 12
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 
 # Part 1 classifies PLHIV by severity category for 12 indicators under four

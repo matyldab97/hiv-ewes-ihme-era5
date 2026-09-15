@@ -9,7 +9,7 @@
 #
 # ============================================================
 
-source(file.path("R", "01_setup", "00_paths.R"))
+source(file.path("01_setup", "00_paths.R"))
 suppressPackageStartupMessages({ library(terra) })
 
 # ---- input variables ---------------------------------------------------
@@ -89,7 +89,7 @@ era5_year_files <- function(v, year)
 load_year <- function(var, year) {
   v <- ERA5_VARS[[var]]
   if (is.null(v))
-    stop("Variable is not in ERA5_VARS, add it to R/01_setup/01_config.R: ", var)
+    stop("Variable is not in ERA5_VARS, add it to 01_setup/01_config.R: ", var)
 
   f <- era5_year_files(v, year)
   if (!file.exists(f)) stop("Missing ERA5 file: ", f)

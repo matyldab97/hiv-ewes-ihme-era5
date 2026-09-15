@@ -7,8 +7,8 @@
 # Requires: steps 02 to 12
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
-source(file.path("R", "01_setup", "03_lib_shared.R"))
+source(file.path("01_setup", "01_config.R"))
+source(file.path("01_setup", "03_lib_shared.R"))
 
 
 # Reads the PLHIV draws with the country layer, the heatwave-day and

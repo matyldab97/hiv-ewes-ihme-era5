@@ -23,7 +23,7 @@
 # Output: results/indices/Heatwaves/TX90p, results/indices/Heatwaves/TX95p
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 TAGS <- list(
   TX90p = file.path(DIR_INDICES, "TX90p/Thresholds/TX90p_thresholds.tif"),

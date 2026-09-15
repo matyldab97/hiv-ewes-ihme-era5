@@ -12,7 +12,7 @@
 # Requires: steps 03 and 05
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 yr        <- TARGET_YEAR
 GDAL_OPTS <- c("COMPRESS=LZW", "PREDICTOR=3", "ZLEVEL=6")

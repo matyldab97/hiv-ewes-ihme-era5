@@ -7,7 +7,7 @@
 # Requires: steps 07 to 10
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R"))
+source(file.path("01_setup", "01_config.R"))
 
 yr     <- TARGET_YEAR
 SCALES <- c(1, 3)

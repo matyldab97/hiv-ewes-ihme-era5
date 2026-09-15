@@ -8,7 +8,7 @@
 # Output: results/indices/SRI
 # ============================================================
 
-source(file.path("R", "01_setup", "01_config.R")); source(file.path("R", "01_setup", "02_lib_indices.R"))
+source(file.path("01_setup", "01_config.R")); source(file.path("01_setup", "02_lib_indices.R"))
 
 SRI_YEARS <- ANALYSIS_YEARS   # monthly series span; the distribution is always
                               # fitted on REF_YEARS, so this may be widened
